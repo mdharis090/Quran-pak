@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'ayahbloc/ayah_screen.dart';
 import 'ayzt_screen.dart';
 
 

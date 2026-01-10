@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'book_screen.dart';
 import 'surah_list_screen.dart';
 import 'juz_list_screen.dart';
 
@@ -122,10 +123,9 @@ class HomeScreen extends StatelessWidget {
                     title: 'Bookmarks',
                     color: Colors.purple.shade400,
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Bookmarks feature coming soon'),
-                        ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const BookmarkScreen()),
                       );
                     },
                   ),

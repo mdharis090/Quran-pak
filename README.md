@@ -1,6 +1,10 @@
 # quranpak
 
 A new Flutter project.
+## Screenshots
+
+### Home Screen
+![Home Screen](assets/screenshot/home Screen up dated .jpeg)
 
 ## Getting Started
 

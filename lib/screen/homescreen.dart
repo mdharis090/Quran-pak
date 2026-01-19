@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'book_screen.dart';
+
+import 'bookmarkbloc/bookmark_screen.dart';
 import 'surah_list_screen.dart';
 import 'juz_list_screen.dart';
 

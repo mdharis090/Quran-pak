@@ -4,7 +4,7 @@ A new Flutter project.
 ## Screenshots
 
 ### Home Screen
-![Home Screen](assets/screenshot/home Screen up dated .jpeg)
+![Home Screen](screenshot/home.jpeg)
 
 ## Getting Started
 

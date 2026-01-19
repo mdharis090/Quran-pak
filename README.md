@@ -4,7 +4,8 @@ A new Flutter project.
 ## Screenshots
 
 ### Home Screen
-![Home Screen](screenshot/home.jpeg)
+
+![Home Screen](screenshots/home.jpeg)
 
 ## Getting Started
 

@@ -247,7 +247,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisSpacing: 16,
                 children: [
                   _menuCard(
-                    imagePath: 'assets/resum.png',
+                    imagePath: 'assets/s.png',
                     title: 'Resume',
                     color: Colors.orange,
                     onTap: () {
@@ -286,7 +286,7 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   _menuCard(
-                    imagePath: 'assets/book.png',
+                    imagePath: 'assets/bookmark.png',
                     title: 'Bookmarks',
                     color: Colors.purple,
                     onTap: () {

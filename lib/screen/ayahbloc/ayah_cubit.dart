@@ -80,22 +80,28 @@ import 'package:audioplayers/audioplayers.dart';
 import '../../api/ayah_repository.dart';
 import '../../database/database_helper.dart';
 import 'ayah_state.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AyahCubit extends Cubit<AyahState> {
   final int surahNumber;
+  final String surahName;
   final DatabaseHelper dbHelper;
   final AyahRepository repository;
   final AudioPlayer player = AudioPlayer();
 
   AyahCubit({
     required this.surahNumber,
+    required this.surahName,
     required this.dbHelper,
     required this.repository,
   }) : super(const AyahState()) {
     player.setReleaseMode(ReleaseMode.stop);
     fetchAyahs();
     loadBookmarks();
+    loadBookmarks();
+    saveLastRead(); // Save position when opened
+    loadSettings(); // Load font preferences
 
     // Listen to audio events
     player.onPlayerStateChanged.listen((state) {
@@ -145,11 +151,38 @@ class AyahCubit extends Cubit<AyahState> {
     await player.seek(position);
   }
 
+  Future<void> updateArabicFontSize(double size) async {
+    emit(state.copyWith(arabicFontSize: size));
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('arabicFontSize', size);
+  }
+
+  Future<void> updateTranslationFontSize(double size) async {
+    emit(state.copyWith(translationFontSize: size));
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('translationFontSize', size);
+  }
+
+  Future<void> loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    final arabicSize = prefs.getDouble('arabicFontSize') ?? 26.0;
+    final translationSize = prefs.getDouble('translationFontSize') ?? 16.0;
+    emit(state.copyWith(
+      arabicFontSize: arabicSize,
+      translationFontSize: translationSize,
+    ));
+  }
+
   Future<void> loadBookmarks() async {
     final allBookmarks = await dbHelper.getBookmarks();
     final keys =
     allBookmarks.map((b) => '${b['surahNumber']}:${b['ayahNumber']}').toSet();
     emit(state.copyWith(bookmarks: keys));
+  }
+
+  Future<void> saveLastRead() async {
+    // Defaulting to Ayah 1 when opening the Surah
+    await dbHelper.saveLastRead(surahNumber, 1, surahName);
   }
 
   Future<void> toggleBookmark(Map<String, dynamic> ayah) async {

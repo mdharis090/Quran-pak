@@ -507,8 +507,7 @@ class _JuzListScreenState extends State<JuzListScreen> {
   @override
   void initState() {
     super.initState();
-    filteredIndexes =
-        List.generate(juzNames.length, (index) => index);
+    filteredIndexes = List.generate(juzNames.length, (index) => index);
   }
 
   void searchJuz(String query) {
@@ -517,155 +516,170 @@ class _JuzListScreenState extends State<JuzListScreen> {
     setState(() {
       filteredIndexes = List.generate(juzNames.length, (index) => index)
           .where((index) =>
-      juzNames[index].toLowerCase().contains(lowerQuery) ||
-          'juz ${index + 1}'.contains(lowerQuery))
+              juzNames[index].toLowerCase().contains(lowerQuery) ||
+              'juz ${index + 1}'.contains(lowerQuery))
           .toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: const Color(0xffF3F6F4),
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.green.shade900,
-        foregroundColor: Colors.white,
+        title: const Text('Juz Index'),
+        backgroundColor: theme.colorScheme.primary,
         elevation: 0,
-        title: const Text('Qur’an Juz'),
-        centerTitle: true,
       ),
       body: Column(
         children: [
-          // 🌙 Header
+          // 🔍 Search Bar Container
           Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(16, 18, 16, 22),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             decoration: BoxDecoration(
-              color: Colors.green.shade900,
+              color: theme.colorScheme.primary,
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(28),
-                bottomRight: Radius.circular(28),
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
               ),
             ),
-            child: Column(
-              children: const [
-                Text(
-                  '﷽',
-                  style: TextStyle(fontSize: 36, color: Colors.white),
-                ),
-                SizedBox(height: 6),
-                Text(
-                  'Select a Juz to Continue Reading',
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-
-          // 🔍 SEARCH BAR (WORKING)
-          Padding(
-            padding: const EdgeInsets.all(16),
             child: TextField(
               onChanged: searchJuz,
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
-                hintText: 'Search Juz or Surah name',
-                prefixIcon: const Icon(Icons.search),
+                hintText: 'Search Juz...',
+                hintStyle: TextStyle(color: Colors.grey.shade600),
+                prefixIcon: Icon(Icons.search, color: theme.colorScheme.primary),
                 filled: true,
                 fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
           ),
 
-          // 📜 LIST
+          // 📜 List
           Expanded(
             child: filteredIndexes.isEmpty
-                ? const Center(
-              child: Text(
-                'No Juz Found',
-                style: TextStyle(fontSize: 16),
-              ),
-            )
-                : ListView.builder(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: filteredIndexes.length,
-              itemBuilder: (context, i) {
-                final index = filteredIndexes[i];
-                final juz = index + 1;
-
-                return Card(
-                  elevation: 2,
-                  margin: const EdgeInsets.only(bottom: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(18),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              JuzDetailScreen(juzNumber: juz),
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search_off,
+                            size: 64, color: Colors.grey.shade400),
+                        const SizedBox(height: 16),
+                        Text(
+                          'No Juz found',
+                          style: theme.textTheme.bodyLarge,
                         ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 23,
-                            backgroundColor:
-                            Colors.green.shade800,
-                            child: Text(
-                              juz.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                      ],
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 20),
+                    itemCount: filteredIndexes.length,
+                    itemBuilder: (context, i) {
+                      final index = filteredIndexes[i];
+                      final juz = index + 1;
+
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.03),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(16),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      JuzDetailScreen(juzNumber: juz),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  // 🔢 Number Badge
+                                  Container(
+                                    width: 42,
+                                    height: 42,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          theme.colorScheme.primary.withOpacity(0.1),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: theme.colorScheme.primary
+                                            .withOpacity(0.2),
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '$juz',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.primary,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+
+                                  // 📝 Details
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Juz $juz',
+                                          style: theme.textTheme.titleMedium
+                                              ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          juzNames[index],
+                                          style: theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 18,
+                                    color: theme.colorScheme.primary.withOpacity(0.5),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Juz $juz',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  juzNames[index],
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color:
-                                    Colors.grey.shade600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Icon(
-                            Icons.chevron_right_rounded,
-                            color: Colors.green.shade700,
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),

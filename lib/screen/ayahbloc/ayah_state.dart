@@ -43,6 +43,10 @@ class AyahState extends Equatable {
   final Duration duration;
   final bool isPlaying;
 
+  // 🛠 Settings
+  final double arabicFontSize;
+  final double translationFontSize;
+
   const AyahState({
     this.loading = true,
     this.ayahs = const [],
@@ -52,6 +56,8 @@ class AyahState extends Equatable {
     this.position = Duration.zero,
     this.duration = Duration.zero,
     this.isPlaying = false,
+    this.arabicFontSize = 26.0,
+    this.translationFontSize = 16.0,
   });
 
   AyahState copyWith({
@@ -63,6 +69,8 @@ class AyahState extends Equatable {
     Duration? position,
     Duration? duration,
     bool? isPlaying,
+    double? arabicFontSize,
+    double? translationFontSize,
   }) {
     return AyahState(
       loading: loading ?? this.loading,
@@ -73,10 +81,22 @@ class AyahState extends Equatable {
       position: position ?? this.position,
       duration: duration ?? this.duration,
       isPlaying: isPlaying ?? this.isPlaying,
+      arabicFontSize: arabicFontSize ?? this.arabicFontSize,
+      translationFontSize: translationFontSize ?? this.translationFontSize,
     );
   }
 
   @override
-  List<Object?> get props =>
-      [loading, ayahs, bookmarks, error, playingUrl, position, duration, isPlaying];
+  List<Object?> get props => [
+        loading,
+        ayahs,
+        bookmarks,
+        error,
+        playingUrl,
+        position,
+        duration,
+        isPlaying,
+        arabicFontSize,
+        translationFontSize,
+      ];
 }

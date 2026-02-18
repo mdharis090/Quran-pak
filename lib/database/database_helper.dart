@@ -18,7 +18,7 @@ class DatabaseHelper {
     final path = await getDatabasesPath();
     return await openDatabase(
       join(path, 'quran_bookmarks.db'),
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE bookmarks(
@@ -29,17 +29,37 @@ class DatabaseHelper {
             audioUrl TEXT
           )
         ''');
+        await db.execute('''
+          CREATE TABLE last_read(
+            id INTEGER PRIMARY KEY DEFAULT 1,
+            surahNumber INTEGER,
+            ayahNumber INTEGER,
+            surahName TEXT
+          )
+        ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute('''
+            CREATE TABLE last_read(
+              id INTEGER PRIMARY KEY DEFAULT 1,
+              surahNumber INTEGER,
+              ayahNumber INTEGER,
+              surahName TEXT
+            )
+          ''');
+        }
       },
     );
   }
 
-  // 🔹 Add bookmark
+  //  Add bookmark
   Future<int> addBookmark(Map<String, dynamic> row) async {
     final db = await database;
     return await db.insert('bookmarks', row, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  // 🔹 Remove bookmark
+  //  Remove bookmark
   Future<int> removeBookmark(int surahNumber, int ayahNumber) async {
     final db = await database;
     return await db.delete(
@@ -49,13 +69,13 @@ class DatabaseHelper {
     );
   }
 
-  // 🔹 Get all bookmarks
+  //  Get all bookmarks
   Future<List<Map<String, dynamic>>> getBookmarks() async {
     final db = await database;
     return await db.query('bookmarks', orderBy: 'id DESC');
   }
 
-  // 🔹 Check if bookmark exists
+  //  Check if bookmark exists
   Future<bool> isBookmarked(int surahNumber, int ayahNumber) async {
     final db = await database;
     final res = await db.query(
@@ -64,5 +84,28 @@ class DatabaseHelper {
       whereArgs: [surahNumber, ayahNumber],
     );
     return res.isNotEmpty;
+  }
+
+  // Save Last Read Position
+  Future<void> saveLastRead(int surahNumber, int ayahNumber, String surahName) async {
+    final db = await database;
+    await db.insert(
+      'last_read',
+      {
+        'id': 1,
+        'surahNumber': surahNumber,
+        'ayahNumber': ayahNumber,
+        'surahName': surahName,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  // Get Last Read
+  Future<Map<String, dynamic>?> getLastRead() async {
+    final db = await database;
+    final res = await db.query('last_read', where: 'id = ?', whereArgs: [1]);
+    if (res.isNotEmpty) return res.first;
+    return null;
   }
 }

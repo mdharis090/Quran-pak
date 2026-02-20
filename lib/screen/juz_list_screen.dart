@@ -459,6 +459,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'juz_detail_screen.dart';
 
 class JuzListScreen extends StatefulWidget {
@@ -503,11 +504,13 @@ class _JuzListScreenState extends State<JuzListScreen> {
   ];
 
   late List<int> filteredIndexes;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     filteredIndexes = List.generate(juzNames.length, (index) => index);
+    _restoreLastJuzPosition();
   }
 
   void searchJuz(String query) {
@@ -519,6 +522,31 @@ class _JuzListScreenState extends State<JuzListScreen> {
               juzNames[index].toLowerCase().contains(lowerQuery) ||
               'juz ${index + 1}'.contains(lowerQuery))
           .toList();
+    });
+  }
+
+  Future<void> _saveLastJuzIndex(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('last_juz_index', index);
+  }
+
+  Future<void> _restoreLastJuzPosition() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedIndex = prefs.getInt('last_juz_index');
+    if (savedIndex == null) return;
+
+    // Wait for first frame so ListView is laid out
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      final listIndex = filteredIndexes.indexOf(savedIndex);
+      if (listIndex == -1) return;
+
+      const estimatedItemExtent = 80.0; // approx height of each item + margin
+      final offset = listIndex * estimatedItemExtent;
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(offset);
+      }
     });
   }
 
@@ -581,6 +609,8 @@ class _JuzListScreenState extends State<JuzListScreen> {
                     ),
                   )
                 : ListView.builder(
+                    key: const PageStorageKey<String>('juz_list_scroll'),
+                    controller: _scrollController,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 20),
                     itemCount: filteredIndexes.length,
@@ -607,6 +637,7 @@ class _JuzListScreenState extends State<JuzListScreen> {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(16),
                             onTap: () {
+                              _saveLastJuzIndex(index);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

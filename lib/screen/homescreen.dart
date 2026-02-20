@@ -4,7 +4,6 @@
 // import 'bookmarkbloc/bookmark_screen.dart';
 // import 'surah_list_screen.dart';
 // import 'juz_list_screen.dart';
-import 'about_screen.dart';
 //
 // class HomeScreen extends StatelessWidget {
 //   const HomeScreen({super.key});
@@ -192,6 +191,7 @@ import 'package:quranpak/screen/ayahbloc/ayah_screen.dart';
 import 'bookmarkbloc/bookmark_screen.dart';
 import 'surah_list_screen.dart';
 import 'juz_list_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -401,7 +401,8 @@ class HomeScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (_) => const AboutScreen()),
+                              MaterialPageRoute(
+                                  builder: (_) => const SettingsScreen()),
                             );
                           },
                         ),

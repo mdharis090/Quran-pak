@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quranpak/screen/homescreen.dart';
+import 'package:quranpak/screen/homescreen/homescreen.dart';
 
 void main() {
   runApp(const MyApp());

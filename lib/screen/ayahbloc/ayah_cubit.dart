@@ -310,6 +310,7 @@ class AyahCubit extends Cubit<AyahState> {
   Future<void> saveLastRead() async {
     // Defaulting to Ayah 1 when opening the Surah
     await dbHelper.saveLastRead(surahNumber, 1, surahName);
+    await dbHelper.addReadingHistory(surahNumber, surahName);
   }
 
   Future<void> toggleBookmark(Map<String, dynamic> ayah) async {

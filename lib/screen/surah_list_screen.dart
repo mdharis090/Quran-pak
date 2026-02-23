@@ -193,8 +193,7 @@ class _SurahListScreenState extends State<SurahListScreen> {
   }
 
   Future<void> fetchSurahs() async {
-    final res =
-        await http.get(Uri.parse('https://api.alquran.cloud/v1/surah'));
+    final res = await http.get(Uri.parse('https://api.alquran.cloud/v1/surah'));
 
     if (res.statusCode == 200) {
       final data = json.decode(res.body);
@@ -205,7 +204,9 @@ class _SurahListScreenState extends State<SurahListScreen> {
           loading = false;
         });
         // Restore scroll position after list is built
-        WidgetsBinding.instance.addPostFrameCallback((_) => _restoreScrollPosition());
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) => _restoreScrollPosition(),
+        );
       }
     }
   }
@@ -251,7 +252,10 @@ class _SurahListScreenState extends State<SurahListScreen> {
               decoration: InputDecoration(
                 hintText: 'Search Surah...',
                 hintStyle: TextStyle(color: Colors.grey.shade600),
-                prefixIcon: Icon(Icons.search, color: theme.colorScheme.primary),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: theme.colorScheme.primary,
+                ),
                 filled: true,
                 fillColor: Colors.white,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
@@ -268,36 +272,41 @@ class _SurahListScreenState extends State<SurahListScreen> {
             child: loading
                 ? const Center(child: CircularProgressIndicator())
                 : filteredSurahs.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.search_off,
-                                size: 64, color: Colors.grey.shade400),
-                            const SizedBox(height: 16),
-                            Text(
-                              'No Surah found',
-                              style: theme.textTheme.bodyLarge,
-                            ),
-                          ],
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.search_off,
+                          size: 64,
+                          color: Colors.grey.shade400,
                         ),
-                      )
-                    : NotificationListener<ScrollEndNotification>(
-                        onNotification: (notification) {
-                          _saveScrollPosition();
-                          return true;
-                        },
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 20),
-                          itemCount: filteredSurahs.length,
-                          itemBuilder: (context, index) {
-                            final surah = filteredSurahs[index];
-                            return _buildSurahTile(context, surah);
-                          },
+                        const SizedBox(height: 16),
+                        Text(
+                          'No Surah found',
+                          style: theme.textTheme.bodyLarge,
                         ),
+                      ],
+                    ),
+                  )
+                : NotificationListener<ScrollEndNotification>(
+                    onNotification: (notification) {
+                      _saveScrollPosition();
+                      return true;
+                    },
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 20,
                       ),
+                      itemCount: filteredSurahs.length,
+                      itemBuilder: (context, index) {
+                        final surah = filteredSurahs[index];
+                        return _buildSurahTile(context, surah);
+                      },
+                    ),
+                  ),
           ),
         ],
       ),
@@ -388,7 +397,8 @@ class _SurahListScreenState extends State<SurahListScreen> {
                 Text(
                   surah['name'],
                   style: const TextStyle(
-                    fontFamily: 'Amiri', // Ensure you have a font or use default
+                    fontFamily: 'Amiri',
+                    // Ensure you have a font or use default
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF004B40),

@@ -1,10 +1,10 @@
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class JuzDetailScreen extends StatefulWidget {
   final int juzNumber;
+
   const JuzDetailScreen({super.key, required this.juzNumber});
 
   @override
@@ -41,68 +41,67 @@ class _JuzDetailScreenState extends State<JuzDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.green.shade700,
-          foregroundColor: Colors.white,
-          elevation: 4,
-          title: Text('Juz ${widget.juzNumber}'
-
-      )),
+        centerTitle: true,
+        backgroundColor: Colors.green.shade700,
+        foregroundColor: Colors.white,
+        elevation: 4,
+        title: Text('Juz ${widget.juzNumber}'),
+      ),
       body: loading
           ? const Center(child: CircularProgressIndicator())
           : Container(
-        color: Colors.white,
-        child: ListView.builder(
-          padding: const EdgeInsets.all(12),
-          itemCount: ayahs.length,
-          itemBuilder: (context, index) {
-            final ayah = ayahs[index];
-            return Container(
-              margin: const EdgeInsets.symmetric(vertical: 6),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black26),
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade50,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Ayah number circle
-                  Container(
-                    width: 36,
-                    alignment: Alignment.center,
-                    child: CircleAvatar(
-                      radius: 16,
-                      backgroundColor: Colors.green,
-                      child: Text(
-                        ayah['numberInSurah'].toString(),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
+              color: Colors.white,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(12),
+                itemCount: ayahs.length,
+                itemBuilder: (context, index) {
+                  final ayah = ayahs[index];
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 6),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey.shade50,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Ayah number circle
+                        Container(
+                          width: 36,
+                          alignment: Alignment.center,
+                          child: CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.green,
+                            child: Text(
+                              ayah['numberInSurah'].toString(),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 10),
+                        // Ayah text
+                        Expanded(
+                          child: Text(
+                            ayah['text'],
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(
+                              fontSize: 22,
+                              height: 1.5, // line spacing like Mushaf
+                              fontFamily: 'Amiri', // use uthmani/arabic font
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  // Ayah text
-                  Expanded(
-                    child: Text(
-                      ayah['text'],
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        height: 1.5, // line spacing like Mushaf
-                        fontFamily: 'Amiri', // use uthmani/arabic font
-                      ),
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
-            );
-          },
-        ),
-      ),
+            ),
     );
   }
 }

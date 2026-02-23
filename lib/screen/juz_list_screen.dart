@@ -518,9 +518,11 @@ class _JuzListScreenState extends State<JuzListScreen> {
 
     setState(() {
       filteredIndexes = List.generate(juzNames.length, (index) => index)
-          .where((index) =>
-              juzNames[index].toLowerCase().contains(lowerQuery) ||
-              'juz ${index + 1}'.contains(lowerQuery))
+          .where(
+            (index) =>
+                juzNames[index].toLowerCase().contains(lowerQuery) ||
+                'juz ${index + 1}'.contains(lowerQuery),
+          )
           .toList();
     });
   }
@@ -579,7 +581,10 @@ class _JuzListScreenState extends State<JuzListScreen> {
               decoration: InputDecoration(
                 hintText: 'Search Juz...',
                 hintStyle: TextStyle(color: Colors.grey.shade600),
-                prefixIcon: Icon(Icons.search, color: theme.colorScheme.primary),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: theme.colorScheme.primary,
+                ),
                 filled: true,
                 fillColor: Colors.white,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
@@ -598,13 +603,13 @@ class _JuzListScreenState extends State<JuzListScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.search_off,
-                            size: 64, color: Colors.grey.shade400),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No Juz found',
-                          style: theme.textTheme.bodyLarge,
+                        Icon(
+                          Icons.search_off,
+                          size: 64,
+                          color: Colors.grey.shade400,
                         ),
+                        const SizedBox(height: 16),
+                        Text('No Juz found', style: theme.textTheme.bodyLarge),
                       ],
                     ),
                   )
@@ -612,7 +617,9 @@ class _JuzListScreenState extends State<JuzListScreen> {
                     key: const PageStorageKey<String>('juz_list_scroll'),
                     controller: _scrollController,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 20),
+                      horizontal: 16,
+                      vertical: 20,
+                    ),
                     itemCount: filteredIndexes.length,
                     itemBuilder: (context, i) {
                       final index = filteredIndexes[i];
@@ -655,8 +662,8 @@ class _JuzListScreenState extends State<JuzListScreen> {
                                     width: 42,
                                     height: 42,
                                     decoration: BoxDecoration(
-                                      color:
-                                          theme.colorScheme.primary.withOpacity(0.1),
+                                      color: theme.colorScheme.primary
+                                          .withOpacity(0.1),
                                       shape: BoxShape.circle,
                                       border: Border.all(
                                         color: theme.colorScheme.primary
@@ -677,22 +684,21 @@ class _JuzListScreenState extends State<JuzListScreen> {
                                   // 📝 Details
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Juz $juz',
                                           style: theme.textTheme.titleMedium
                                               ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                         const SizedBox(height: 4),
                                         Text(
                                           juzNames[index],
                                           style: theme.textTheme.bodyMedium
-                                              ?.copyWith(
-                                            fontSize: 12,
-                                          ),
+                                              ?.copyWith(fontSize: 12),
                                         ),
                                       ],
                                     ),
@@ -701,7 +707,8 @@ class _JuzListScreenState extends State<JuzListScreen> {
                                   Icon(
                                     Icons.arrow_forward_ios_rounded,
                                     size: 18,
-                                    color: theme.colorScheme.primary.withOpacity(0.5),
+                                    color: theme.colorScheme.primary
+                                        .withOpacity(0.5),
                                   ),
                                 ],
                               ),

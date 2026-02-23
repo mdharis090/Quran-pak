@@ -2,23 +2,29 @@ import 'package:flutter/material.dart';
 
 import '../../../muzail/ManzilDetailScreen.dart';
 
-
 class ManzilSection extends StatelessWidget {
   final ThemeData theme;
+
   const ManzilSection({super.key, required this.theme});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => const ManzilDetailScreen()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ManzilDetailScreen()),
+        );
       },
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [theme.colorScheme.primary.withOpacity(0.8), theme.colorScheme.primary],
+            colors: [
+              theme.colorScheme.primary.withOpacity(0.8),
+              theme.colorScheme.primary,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -39,8 +45,21 @@ class ManzilSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Unified Manzil', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text('Read all 7 Manzils on one page', style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 13)),
+                  const Text(
+                    'Unified Manzil',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Read all 7 Manzils on one page',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 13,
+                    ),
+                  ),
                 ],
               ),
             ),

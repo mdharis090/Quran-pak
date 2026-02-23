@@ -28,8 +28,11 @@ class BookmarkScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.bookmark_border_rounded,
-                        size: 80, color: Colors.grey.shade400),
+                    Icon(
+                      Icons.bookmark_border_rounded,
+                      size: 80,
+                      color: Colors.grey.shade400,
+                    ),
                     const SizedBox(height: 16),
                     Text(
                       'No bookmarks yet',
@@ -80,9 +83,13 @@ class BookmarkScreen extends StatelessWidget {
                           children: [
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.secondary.withOpacity(0.2),
+                                color: theme.colorScheme.secondary.withOpacity(
+                                  0.2,
+                                ),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Text(
@@ -95,14 +102,17 @@ class BookmarkScreen extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              onPressed: () => context
-                                  .read<BookmarkCubit>()
-                                  .deleteBookmark(
-                                      ayah['surahNumber'], ayah['ayahNumber']),
-                              icon: const Icon(Icons.bookmark_remove,
-                                  color: Colors.redAccent),
+                              onPressed: () =>
+                                  context.read<BookmarkCubit>().deleteBookmark(
+                                    ayah['surahNumber'],
+                                    ayah['ayahNumber'],
+                                  ),
+                              icon: const Icon(
+                                Icons.bookmark_remove,
+                                color: Colors.redAccent,
+                              ),
                               tooltip: 'Remove Bookmark',
-                            )
+                            ),
                           ],
                         ),
                         const SizedBox(height: 12),
@@ -167,16 +177,18 @@ class BookmarkScreen extends StatelessWidget {
                                     thumbColor: theme.colorScheme.secondary,
                                     trackHeight: 4,
                                     thumbShape: const RoundSliderThumbShape(
-                                        enabledThumbRadius: 6),
+                                      enabledThumbRadius: 6,
+                                    ),
                                   ),
                                   child: Slider(
                                     value: state.position.inSeconds.toDouble(),
                                     max: state.duration.inSeconds.toDouble() > 0
                                         ? state.duration.inSeconds.toDouble()
                                         : 1,
-                                    onChanged: (value) => context
-                                        .read<BookmarkCubit>()
-                                        .seekAudio(Duration(seconds: value.toInt())),
+                                    onChanged: (value) =>
+                                        context.read<BookmarkCubit>().seekAudio(
+                                          Duration(seconds: value.toInt()),
+                                        ),
                                   ),
                                 ),
                               )

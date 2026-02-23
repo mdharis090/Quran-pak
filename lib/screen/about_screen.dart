@@ -66,8 +66,9 @@ class AboutScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Features',
-                style: theme.textTheme.titleLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -90,8 +91,9 @@ class AboutScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Privacy',
-                style: theme.textTheme.titleLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 8),
@@ -107,8 +109,10 @@ class AboutScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
                 foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -121,4 +125,3 @@ class AboutScreen extends StatelessWidget {
     );
   }
 }
-

@@ -7,7 +7,6 @@ import 'package:quranpak/screen/homescreen/widgets/menu_grid.dart';
 
 import '../ayahbloc/ayah_screen.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -66,9 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.menu, color: theme.colorScheme.primary, size: 28),
+                      Icon(
+                        Icons.menu,
+                        color: theme.colorScheme.primary,
+                        size: 28,
+                      ),
                       Text('Quran Pak', style: theme.textTheme.titleLarge),
-                      Icon(Icons.notifications_none, color: theme.colorScheme.primary, size: 28),
+                      Icon(
+                        Icons.notifications_none,
+                        color: theme.colorScheme.primary,
+                        size: 28,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -89,7 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       ManzilSection(theme: theme),
                       const SizedBox(height: 16),
-                      Last10QuranSurahsSection(theme: theme, surahs: last10QuranSurahs),
+                      Last10QuranSurahsSection(
+                        theme: theme,
+                        surahs: last10QuranSurahs,
+                      ),
                       const SizedBox(height: 16),
                       if (last10Surahs.isNotEmpty)
                         Last10SurahsSection(theme: theme, surahs: last10Surahs),
@@ -131,12 +141,26 @@ class _HomeScreenState extends State<HomeScreen> {
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Last Read', style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500)),
+              Text(
+                'Last Read',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               Icon(Icons.book, color: Colors.white, size: 20),
             ],
           ),
           const SizedBox(height: 12),
-          const Text('Continue Reading', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+          const Text(
+            'Continue Reading',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () async {
@@ -163,10 +187,15 @@ class _HomeScreenState extends State<HomeScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.colorScheme.secondary,
               foregroundColor: theme.colorScheme.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
-            child: const Text('Resume ➔', style: TextStyle(fontWeight: FontWeight.bold)),
+            child: const Text(
+              'Resume ➔',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),

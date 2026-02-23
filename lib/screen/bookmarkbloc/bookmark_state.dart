@@ -32,5 +32,11 @@ class BookmarkState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [bookmarks, playingUrl, position, duration, isPlaying];
+  List<Object?> get props => [
+    bookmarks,
+    playingUrl,
+    position,
+    duration,
+    isPlaying,
+  ];
 }

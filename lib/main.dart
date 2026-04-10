@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quranpak/scr/core/constant/colors.dart';
+import 'package:quranpak/scr/core/utlity/router/router.dart';
 import 'package:quranpak/scr/feauture/screen/homescreen/homescreen.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Quran Pak',
       theme: ThemeData(
@@ -19,15 +20,15 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF5F5F3), // Soft off-white
         colorScheme: ColorScheme.fromSeed(
           
-          seedColor: AppColors.primaryDeepGreen,
-          primary: AppColors.primaryDeepGreen,
+          seedColor: AppColors.Green,
+          primary: AppColors.Green,
           secondary: AppColors.secondaryGold,
           surface: AppColors.backgroundOffWhite,
           background: AppColors.backgroundOffWhite,
 
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.primaryDeepGreen,
+          backgroundColor: AppColors.Green,
           foregroundColor: AppColors.white,
           elevation: 0,
           centerTitle: true,
@@ -48,18 +49,19 @@ class MyApp extends StatelessWidget {
           headlineMedium: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF004B40),
+            color: AppColors.Green,
           ),
           titleLarge: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF004B40),
+            color:AppColors.Green,
           ),
-          bodyLarge: TextStyle(fontSize: 16, color: Colors.black87),
-          bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
+          bodyLarge: TextStyle(fontSize: 16, color: AppColors.black87),
+          bodyMedium: TextStyle(fontSize: 14, color: AppColors.black54),
         ),
       ),
-      home: const HomeScreen(),
+         routerConfig: router,
+      //home: const HomeScreen(),
     );
   }
 }

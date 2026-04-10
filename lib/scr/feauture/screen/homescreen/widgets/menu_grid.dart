@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../bookmarkbloc/bookmark_screen.dart';
 import '../../juz_list_screen.dart';
@@ -26,10 +27,11 @@ class MenuGrid extends StatelessWidget {
           icon: Icons.menu_book_rounded,
           color: const Color(0xFFE8F5E9),
           accent: theme.colorScheme.primary,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const SurahListScreen()),
-          ),
+          onTap: () => context.push('/surah'),
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (_) => const SurahListScreen()),
+          // ),
         ),
         _menuCard(
           context,
@@ -37,10 +39,12 @@ class MenuGrid extends StatelessWidget {
           icon: Icons.format_list_numbered_rounded,
           color: const Color(0xFFFFF8E1),
           accent: Colors.orange.shade800,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const JuzListScreen()),
-          ),
+          onTap: () => context.push('/juz'),
+      
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (_) => const JuzListScreen()),
+          // ),
         ),
         _menuCard(
           context,
@@ -48,10 +52,11 @@ class MenuGrid extends StatelessWidget {
           icon: Icons.bookmark_rounded,
           color: const Color(0xFFF3E5F5),
           accent: Colors.purple,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const BookmarkScreen()),
-          ),
+          onTap: () => context.push('/bookmark'),
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (_) => const BookmarkScreen()),
+          // ),
         ),
         _menuCard(
           context,
@@ -59,10 +64,11 @@ class MenuGrid extends StatelessWidget {
           icon: Icons.settings,
           color: const Color(0xFFE3F2FD),
           accent: Colors.blue.shade800,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-          ),
+          onTap: () => context.push('/setting'),
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (_) => const SettingsScreen()),
+          // ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quranpak/scr/feauture/database/database_helper.dart';
 import 'package:quranpak/scr/feauture/screen/homescreen/widgets/last10_quran_surahs.dart';
 import 'package:quranpak/scr/feauture/screen/homescreen/widgets/last10_surahs.dart';
@@ -168,15 +169,19 @@ class _HomeScreenState extends State<HomeScreen> {
               final lastRead = await db.getLastRead();
               if (context.mounted) {
                 if (lastRead != null) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => AyahScreen(
-                        surahNumber: lastRead['surahNumber'],
-                        surahName: lastRead['surahName'],
-                      ),
-                    ),
-                  );
+                  context.push(
+          '/ayah?name=${lastRead['surahName']}',
+          extra: lastRead['surahNumber'],
+        );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (_) => AyahScreen(
+                  //       surahNumber: lastRead['surahNumber'],
+                  //       surahName: lastRead['surahName'],
+                  //     ),
+                  //   ),
+                  // );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('No recent reading found.')),

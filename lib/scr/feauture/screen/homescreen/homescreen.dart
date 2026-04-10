@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quranpak/database/database_helper.dart';
-import 'package:quranpak/screen/homescreen/widgets/last10_quran_surahs.dart';
-import 'package:quranpak/screen/homescreen/widgets/last10_surahs.dart';
-import 'package:quranpak/screen/homescreen/widgets/manzil_section.dart';
-import 'package:quranpak/screen/homescreen/widgets/menu_grid.dart';
+import 'package:quranpak/scr/feauture/database/database_helper.dart';
+import 'package:quranpak/scr/feauture/screen/homescreen/widgets/last10_quran_surahs.dart';
+import 'package:quranpak/scr/feauture/screen/homescreen/widgets/last10_surahs.dart';
+import 'package:quranpak/scr/feauture/screen/homescreen/widgets/manzil_section.dart';
+import 'package:quranpak/scr/feauture/screen/homescreen/widgets/menu_grid.dart';
 
-import '../ayahbloc/ayah_screen.dart';
+import '../../ayahbloc/ayah_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

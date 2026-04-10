@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screen/ayahbloc/ayah_screen.dart';
+import '../ayahbloc/ayah_screen.dart';
 
 class ManzilDetailScreen extends StatelessWidget {
   const ManzilDetailScreen({super.key});

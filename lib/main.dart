@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quranpak/screen/homescreen/homescreen.dart';
+import 'package:quranpak/scr/core/constant/colors.dart';
+import 'package:quranpak/scr/feauture/screen/homescreen/homescreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,21 +18,23 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFF5F5F3), // Soft off-white
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF004B40), // Deep Green
-          primary: const Color(0xFF004B40),
-          secondary: const Color(0xFFFFD700), // Gold
-          surface: const Color(0xFFF5F5F3),
-          background: const Color(0xFFF5F5F3),
+          
+          seedColor: AppColors.primaryDeepGreen,
+          primary: AppColors.primaryDeepGreen,
+          secondary: AppColors.secondaryGold,
+          surface: AppColors.backgroundOffWhite,
+          background: AppColors.backgroundOffWhite,
+
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF004B40),
-          foregroundColor: Colors.white,
+          backgroundColor: AppColors.primaryDeepGreen,
+          foregroundColor: AppColors.white,
           elevation: 0,
           centerTitle: true,
           titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: AppColors.white,
             letterSpacing: 1.2,
           ),
         ),

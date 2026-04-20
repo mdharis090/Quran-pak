@@ -15,10 +15,7 @@ class ManzilSection extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         context.push('manzil');
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (_) => const ManzilDetailScreen()),
-        // );
+       
       },
       child: Container(
         width: double.infinity,

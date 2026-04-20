@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../bookmarkbloc/bookmark_screen.dart';
-import '../../juz_list_screen.dart';
-import '../../settings_screen.dart';
-import '../../surah_list_screen.dart';
 
-class MenuGrid extends StatelessWidget {
+class MenuGrid extends ConsumerWidget {
   final ThemeData theme;
 
   const MenuGrid({super.key, required this.theme});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

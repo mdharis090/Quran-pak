@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quranpak/core/presentation/screens/mazil/manzil_screen.dart';
 
-import '../../../muzail/ManzilDetailScreen.dart';
+import '../../../../../scr/feauture/muzail/ManzilDetailScreen.dart';
 
-class ManzilSection extends StatelessWidget {
+class ManzilSection extends ConsumerWidget {
   final ThemeData theme;
 
   const ManzilSection({super.key, required this.theme});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const ManzilDetailScreen()),
-        );
+        context.push('manzil');
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (_) => const ManzilDetailScreen()),
+        // );
       },
       child: Container(
         width: double.infinity,

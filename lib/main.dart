@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:quranpak/scr/core/constant/colors.dart';
-import 'package:quranpak/scr/core/utlity/router/router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quranpak/core/route/app_route.dart';
+import 'package:quranpak/core/utliy/constant/colors.dart';
+
 import 'package:quranpak/scr/feauture/screen/homescreen/homescreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {

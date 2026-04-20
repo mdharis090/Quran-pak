@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../ayahbloc/ayah_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../../scr/feauture/ayahbloc/ayah_screen.dart';
 
-class Last10QuranSurahsSection extends StatelessWidget {
+class Last10QuranSurahsSection extends ConsumerWidget {
   final ThemeData theme;
   final List<Map<String, dynamic>> surahs;
 
@@ -12,7 +13,7 @@ class Last10QuranSurahsSection extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

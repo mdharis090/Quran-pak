@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../database/database_helper.dart';
+import '../../../../core/data/datasource/database_helper.dart';
 import 'package:equatable/equatable.dart';
 
 part 'bookmark_state.dart';

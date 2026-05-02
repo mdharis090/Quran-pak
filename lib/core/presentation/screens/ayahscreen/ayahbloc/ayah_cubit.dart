@@ -77,9 +77,10 @@
 // }
 import 'package:bloc/bloc.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:quranpak/core/Sercices/service/ayah_repositorty_api.dart';
 import 'dart:io';
-import '../../core/Sercices/api/ayah_repository.dart';
-import '../../../core/data/datasource/database_helper.dart';
+
+import '../../../../data/datasource/database_helper.dart';
 import 'ayah_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';

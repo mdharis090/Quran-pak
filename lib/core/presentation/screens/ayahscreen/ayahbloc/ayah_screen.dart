@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/Sercices/api/ayah_repository.dart';
-import '../../../core/data/datasource/database_helper.dart';
+import 'package:quranpak/core/Sercices/service/ayah_repositorty_api.dart';
+
+import '../../../../data/datasource/database_helper.dart';
 import 'ayah_cubit.dart';
 import 'ayah_state.dart';
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quranpak/core/presentation/screens/mazil/manzil_screen.dart';
 
-import '../../../../../scr/feauture/muzail/ManzilDetailScreen.dart';
+
 
 class ManzilSection extends ConsumerWidget {
   final ThemeData theme;
@@ -14,7 +13,7 @@ class ManzilSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        context.push('manzil');
+        context.push('/manzil');
        
       },
       child: Container(

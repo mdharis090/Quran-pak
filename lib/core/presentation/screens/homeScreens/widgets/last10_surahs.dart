@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../../scr/feauture/ayahbloc/ayah_screen.dart';
+import '../../ayahscreen/ayahbloc/ayah_screen.dart';
 
 class Last10SurahsSection extends ConsumerWidget {
   final ThemeData theme;

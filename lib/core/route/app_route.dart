@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quranpak/core/presentation/screens/homeScreens/home_screen.dart';
 import 'package:quranpak/core/presentation/screens/mazil/manzil_screen.dart';
-import 'package:quranpak/scr/feauture/ayahbloc/ayah_screen.dart';
-import 'package:quranpak/scr/feauture/screen/bookmarkbloc/bookmark_screen.dart';
+import 'package:quranpak/core/presentation/screens/ayahscreen/ayahbloc/ayah_screen.dart';
+import 'package:quranpak/core/presentation/screens/bookmarkbloc/bookmark_screen.dart';
 import 'package:quranpak/core/presentation/screens/homeScreens/widgets/menu_grid.dart';
-import 'package:quranpak/scr/feauture/screen/juz_list_screen.dart';
-import 'package:quranpak/scr/feauture/screen/settings_screen.dart';
-import 'package:quranpak/scr/feauture/screen/surah_list_screen.dart';
+import 'package:quranpak/core/presentation/screens/juz_screen/juz_list_screen.dart';
+import 'package:quranpak/core/presentation/screens/setting_screen/settings_screen.dart';
+import 'package:quranpak/core/presentation/screens/surah_list/surah_list_screen.dart';
 
 final router = GoRouter(
   initialLocation: "/mainscreeen",

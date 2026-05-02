@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quranpak/core/route/app_route.dart';
 import 'package:quranpak/core/utliy/constant/colors.dart';
 
-import 'package:quranpak/scr/feauture/screen/homescreen/homescreen.dart';
+
 
 void main() {
   runApp(const ProviderScope(child: MyApp()),

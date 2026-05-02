@@ -88,7 +88,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.quranpak"
+        applicationId = "com.haris.quranpak"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

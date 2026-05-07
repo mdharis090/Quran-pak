@@ -1,3 +1,4 @@
+
 name: Build Flutter APK and Publish Release
 
 on:
@@ -38,6 +39,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: apk-${{ github.sha }}
-          name: APK Build – Branch ${{ github.ref_name }} – ${{ github.sha }} – ${{ github.run_id }}
+          name: APK Build – Branch ${{ github.ref_name }} – ${{ github.sha }}
           generate_release_notes: true
           files: build/app/outputs/flutter-apk/app-release.apk
